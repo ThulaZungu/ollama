@@ -306,8 +306,6 @@ func GetModel(name string) (*Model, error) {
 				return nil, err
 			}
 			model.License = append(model.License, string(bts))
-		case "application/vnd.ollama.image.mmproj":
-			model.MMProjPath = filename
 		}
 	}
 
@@ -831,10 +829,6 @@ TEMPLATE """{{ .Template }}"""
 
 {{- if .System }}
 SYSTEM """{{ .System }}"""
-{{- end }}
-
-{{- if .MMProjPath }}
-MMPROJ {{ .MMProjPath }}
 {{- end }}
 
 {{- range $adapter := .AdapterPaths }}
